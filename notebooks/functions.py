@@ -112,7 +112,8 @@ def predict_on_array(
     core_dim: list[str],
     resample_dim: list[str],
     resample_mode: Literal["centers", "edges"]="edges",
-    batch_size: int=16
+    batch_size: int=16,
+    progress_bar: bool=True
 ) -> xr.DataArray:
     '''
     Generate predictions from a PyTorch model and reassemble predictions
@@ -152,6 +153,9 @@ def predict_on_array(
 
     ``resample_mode`` (``"edges"|"centers"``): Whether to treat coordinates on the input
     array as pixel edges or centers.
+
+    ``progress_bar`` (``bool``): Whether to show a progress bar while iterating 
+    over ``dataset``.
 
     Notes
     -----
@@ -209,7 +213,7 @@ def predict_on_array(
     loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size)
 
     # Iterate over each batch
-    for i, batch in tqdm(enumerate(loader), total=len(loader)):
+    for i, batch in tqdm(enumerate(loader), total=len(loader), disable=progress_bar):
         input_tensor = batch[0] if isinstance(batch, (list, tuple)) else batch
         out_batch = model(input_tensor).detach().numpy()
 
