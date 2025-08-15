@@ -81,7 +81,8 @@ def test_predict_on_array_all_models(
     # --- Run the function under test ---
     result_da = predict_on_array(
         dataset=dataset, model=model, output_tensor_dim=output_tensor_dim,
-        new_dim=new_dim, core_dim=core_dim, resample_dim=resample_dim, batch_size=4
+        new_dim=new_dim, core_dim=core_dim, resample_dim=resample_dim, batch_size=4,
+        progress_bar=False
     )
 
     # --- Manually calculate the expected result ---

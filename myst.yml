@@ -17,9 +17,6 @@ project:
       children:
         - file: notebooks/xbatcher_dataloading.ipynb
         - file: notebooks/xbatcher_reconstruction.ipynb
-    - title: Testing model inference
-      children:
-        - file: notebooks/inference-testing.ipynb
     - title: Example with topography data
       children:
         - file: notebooks/autoencoder.ipynb
