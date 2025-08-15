@@ -213,7 +213,7 @@ def predict_on_array(
     loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size)
 
     # Iterate over each batch
-    for i, batch in tqdm(enumerate(loader), total=len(loader), disable=progress_bar):
+    for i, batch in tqdm(enumerate(loader), total=len(loader), disable=not progress_bar):
         input_tensor = batch[0] if isinstance(batch, (list, tuple)) else batch
         out_batch = model(input_tensor).detach().numpy()
 
